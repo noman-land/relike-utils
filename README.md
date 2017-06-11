@@ -20,7 +20,7 @@ Javascript library for interfacing with ReLike, the decentralized public liking 
     
     Upon instantiation, `ReLikeUtils` will automatically connect to whatever `currentProvider` it sees. An override is possible inside the config object. Please see below. 
     
-    It will also start listening for `LikeEvent`s. Every time someone likes or dislikes something on ReLike an event is fired. A callback can be provided to receive these events. Please see below.
+    It will also start listening for [`LikeEvent`](https://github.com/noman-land/relike-utils/blob/master/contracts/ReLike.sol#L28)s. Every time someone likes or dislikes something on ReLike an event is fired. A callback can be provided to receive these events. Please see below.
      
     It will also start listening for any time the user switches accounts. A callback can be provided to receive the address of the new account. Please see below
     
