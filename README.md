@@ -43,27 +43,27 @@ Javascript library for interfacing with ReLike, the decentralized public liking 
 
 ### List of methods and what they do
 
-`relikeUtils.like(entityId)`
+`reLikeUtils.like(entityId)`
 
 Takes any string and likes it. This is anything from "cat" or "dog" to "Terminator 3" to "🍕" to "QmW84daiALvufneDcjDeoTFKR1bGQuHFUFv1fcSSRpmuCN" to "https://www.theguardian.com/sport/2017/jun/10/nba-finals-cleveland-cavaliers-golden-state-warriors-game-4".
 
-`relikeUtils.unlike(entityId)`
+`reLikeUtils.unlike(entityId)`
 
 Takes any previously liked string and unlikes it. Will throw an error if the user hasn't liked this entity yet.
 
-`relikeUtils.dislike(entityId)`
+`reLikeUtils.dislike(entityId)`
 
 takes any string and dislikes it.
 
-`relikeUtils.unDislike(entityId)`
+`reLikeUtils.unDislike(entityId)`
 
 Takes any previously disliked string and undislikes it. Will throw an error if the user hasn't disliked this entity yet.
 
-`relikeUtils().getActiveAccount()`
+`reLikeUtils().getActiveAccount()`
 
 Returns the user address currently active in web3.
 
-`relikeUtils.getMyRating(entityId)`
+`reLikeUtils.getMyRating(entityId)`
 
 Returns the user's current rating for a given string. The values are
 
@@ -71,7 +71,7 @@ Returns the user's current rating for a given string. The values are
     1 = like
     2 = dislike
     
-`relikeUtils.getLikeCount(entityId)`
+`reLikeUtils.getLikeCount(entityId)`
 
 This returns an object that contains the aggregated like counts for any entity. The object is of the shape:
 
