@@ -18468,9 +18468,6 @@ var ReLikeUtils = function () {
       } else if (typeof fallback === 'function') {
         console.warn('Using web3 provided by the fallback function');
         this.web3 = fallback();
-      } else {
-        console.warn('Using web3 at localhost');
-        this.web3 = new _web2.default(new _web2.default.providers.HttpProvider('http://localhost:8545'));
       }
       window.web3 = this.web3;
     }
