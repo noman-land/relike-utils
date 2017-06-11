@@ -1,6 +1,6 @@
 {
   "name": "relike-utils",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Javascript library for interacting with the ReLike universal liking service.",
   "main": "build/index.js",
   "scripts": {
