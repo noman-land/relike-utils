@@ -77,9 +77,6 @@ export default class ReLikeUtils {
     } else if (typeof fallback === 'function') {
       console.warn('Using web3 provided by the fallback function');
       this.web3 = fallback();
-    } else {
-      console.warn('Using web3 at localhost');
-      this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
     }
     window.web3 = this.web3;
   }
