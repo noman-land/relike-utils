@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Javascript library for interacting with the ReLike universal liking service.",
   "main": "build/index.js",
+  "files": [ "build/index.js" ],
   "scripts": {
     "lint": "eslint ./",
     "build": "webpack",
