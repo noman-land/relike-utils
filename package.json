@@ -4,7 +4,8 @@
   "description": "Javascript library for interacting with the ReLike universal liking service.",
   "main": "build/index.js",
   "files": [
-    "build"
+    "./build/index.js",
+    "./build/contracts/"
   ],
   "scripts": {
     "lint": "eslint ./",
