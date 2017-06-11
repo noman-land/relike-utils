@@ -10,11 +10,13 @@ Javascript library for interfacing with ReLike, the decentralized public liking 
     
 2. Import the package into your project
 
-    `import ReLikeUtils from 'relike-utils';`
+    ```js
+    import ReLikeUtils from 'relike-utils';
+    ```
     
 3. Instantiate a `ReLikeUtils` object. This has all the methods you need to interact with the `ReLike` liking service on Ethereum.
 
-    ```
+    ```js
     const reLikeUtils = new ReLikeUtils();
     ```
     
