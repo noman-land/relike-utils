@@ -71,9 +71,9 @@ export default class ReLikeUtils {
   }
 
   initWeb3(fallback) {
-    if (typeof window.web3 !== 'undefined') {
+    if (typeof web3 !== 'undefined') {
       console.warn('Using web3 detected from external source');
-      this.web3 = new Web3(window.web3.currentProvider);
+      this.web3 = new Web3(web3.currentProvider);
     } else if (typeof fallback === 'function') {
       console.warn('Using web3 provided by the fallback function');
       this.web3 = fallback();
