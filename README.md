@@ -18,7 +18,7 @@ Javascript library for interfacing with ReLike, the decentralized public liking 
     const reLikeUtils = new ReLikeUtils();
     ```
     
-    Upon instantiation, `ReLikeUtils` will automatically connect to whatever `currentProdiver` it sees. An override is possible inside the config object. Please see below. 
+    Upon instantiation, `ReLikeUtils` will automatically connect to whatever `currentProvider` it sees. An override is possible inside the config object. Please see below. 
     
     It will also start listening for `LikeEvent`s. Every time someone likes or dislikes something on ReLike an event is fired. A callback can be provided to receive these events. Please see below.
      
