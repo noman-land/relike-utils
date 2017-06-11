@@ -7,7 +7,13 @@ import relikeArtifacts from '../build/contracts/ReLike.json';
 import { logError } from './utils/loggingUtils';
 
 export default class ReLikeUtils {
-  constructor({ onAccountSwitch, onLikeEvent, web3Override } = {}) {
+  constructor(config) {
+    const {
+      onAccountSwitch,
+      onLikeEvent,
+      web3Override,
+    } = typeof config === 'object' ? config : {};
+
     if (typeof web3Override === 'function') {
       this.web3 = web3Override(this.web3);
     } else {
