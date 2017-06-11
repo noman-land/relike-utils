@@ -6,6 +6,7 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'index.js',
     library: 'relike-utils',
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
