@@ -33,15 +33,15 @@ Javascript library for interfacing with ReLike, the decentralized public liking 
     ```js
     const reLikeUtils = new ReLikeUtils({
       // This function will be called every time ReLike notices the primary account switching
-      onAccountSwitch: function(newAccount) {}
+      onAccountSwitch: function(newAccount) {},
       
       // This function will be called every time ReLike gets an event notification of a new like
       // In the future this function will receive the rating and the address that liked it as well
-      onLikeEvent: function(entityId) {}
+      onLikeEvent: function(entityId) {},
       
       // This function will be fired when ReLike is initializing and should return a web3 object that ReLike will use instead of the one it finds
       // It receives the current web3 object if one was found
-      web3Override: function(currentWeb3Object) {}
+      web3Override: function(currentWeb3Object) {},
     });
     ```
 
