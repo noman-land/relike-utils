@@ -111,7 +111,6 @@ export default class ReLikeUtils {
   updateOnAccountSwitch(callback) {
     let oldAccount = null;
     setInterval(() => this.getActiveAccount().then(newAccount => {
-      console.log('********', newAccount);
       if (oldAccount === newAccount) {
         return false;
       }
