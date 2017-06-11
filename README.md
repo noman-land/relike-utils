@@ -100,14 +100,15 @@ Returns the user's current rating for a given string. The values are
     1 = like
     2 = dislike
     
-```
+```js
 reLikeUtils.getLikeCount(entityId)
 ```
 
 This returns an object that contains the aggregated like counts for any entity. The object is of the shape:
 
-    {
-      dislikes: 2,
-      likes: 4
-    }
-
+```js
+{
+  dislikes: 2,
+  likes: 4
+}
+```
