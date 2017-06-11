@@ -27,7 +27,6 @@ Javascript library for interfacing with ReLike, the decentralized public liking 
     The constructor can optionally be given a config object with one or more of the following 
     
     ```
-      
     const reLikeUtils = new ReLikeUtils({
       // This function will be called every time ReLike notices the primary account switching
       onAccountSwitch: function(newAccount) {}
