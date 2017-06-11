@@ -43,7 +43,7 @@ Javascript library for interfacing with ReLike, the decentralized public liking 
 
 ### Documentation
 
-Everything in ReLike centers acount the concept of an `entityId`. This is just a string of text but it represents anything that can be liked. Some examples of `entityId`s include:
+Everything in ReLike centers around the concept of an `entityId`. This is just a string of text but it represents anything that can be liked. Some examples of `entityId`s include:
 
     "cat"
     "dog"
@@ -51,6 +51,8 @@ Everything in ReLike centers acount the concept of an `entityId`. This is just a
     "🍕"
     "QmW84daiALvufneDcjDeoTFKR1bGQuHFUFv1fcSSRpmuCN"
     "https://www.theguardian.com/sport/2017/jun/10/nba-finals-cleveland-cavaliers-golden-state-warriors-game-4"
+    
+You can like or dislike any `entityId` you can think of. The sky is the limit. In its alpha stage it's very permissive so something is bound to break.
 
 #### List of methods and what they do
 
