@@ -14,11 +14,7 @@ export default class ReLikeUtils {
       web3Override,
     } = typeof config === 'object' ? config : {};
 
-    //if (typeof web3Override === 'function') {
-    //  this.web3 = web3Override(this.web3);
-    //} else {
-    this.initWeb3();
-    //}
+    this.initWeb3(web3Override);
 
     this.ReLikeContract = contract(relikeArtifacts);
     this.ReLikeContract.setProvider(this.web3.currentProvider);
@@ -79,8 +75,9 @@ export default class ReLikeUtils {
       console.warn('Using web3 detected from external source.');
       this.web3 = new Web3(window.web3.currentProvider);
     } else if (typeof fallback === 'function') {
+      this.web3 = fallback();
+    } else {
       this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
-      //fallback();
     }
     window.web3 = this.web3;
   }
