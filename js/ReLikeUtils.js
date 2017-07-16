@@ -129,6 +129,7 @@ export default class ReLikeUtils {
   updateOnLikeEvents(callback) {
     this.ReLikeContract.deployed().then(instance => instance.ItemLiked((error, result) => {
       const { args: { entityId } } = result;
+      logInfo('New like event detected')(entityId);
       if (typeof callback === 'function') {
         callback(entityId);
       }
