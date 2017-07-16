@@ -1,18 +1,18 @@
-const APP_PREFIX = '* * * RELIKE * * *:';
+const APP_PREFIX = '[*** ReLikeUtils ***]';
 
-export const log = message => (info) => {
+export const log = message => (info = '') => {
   console.info(APP_PREFIX, message, info); // eslint-disable-line
 };
 
-export const logError = message => (error) => {
+export const logError = message => (error = '') => {
   console.error(APP_PREFIX, message, error); // eslint-disable-line
 };
 
-export const logInfo = message => (info) => {
+export const logInfo = message => (info = '') => {
   console.info(APP_PREFIX, message, info); // eslint-disable-line
 };
 
-export const logWarning = message => (warning) => {
+export const logWarning = message => (warning = '') => {
   console.warn(APP_PREFIX, message, warning); // eslint-disable-line
 };
 
