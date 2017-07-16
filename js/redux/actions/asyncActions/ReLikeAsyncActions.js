@@ -1,4 +1,6 @@
-import ReLikeUtils from 'relike-utils';
+import ReLikeUtils from '../../../ReLikeUtils';
+
+import { logError } from '../../../utils/loggingUtils';
 
 import {
   getLikeCountError,
@@ -12,20 +14,18 @@ import {
   getMyRatingSuccess,
 } from '../myRatingActions';
 
-const reLikeUtils = new ReLikeUtils({
-  onLikeEvent: () => {},
-});
+const reLikeUtils = new ReLikeUtils();
 
 export function getLikeCount(entityId) {
   return dispatch => {
     dispatch(getLikeCountStart(entityId));
 
     return reLikeUtils.getLikeCount(entityId)
-    .then(result => dispatch(getLikeCountSuccess(result, entityId)))
-    .catch(error => {
-      console.error(error);
-      dispatch(getLikeCountError(error));
-    });
+      .then(result => dispatch(getLikeCountSuccess(result, entityId)))
+      .catch(error => {
+        logError('Error getting likeCount')(error);
+        dispatch(getLikeCountError(error));
+      });
   };
 }
 
@@ -34,11 +34,11 @@ export function getMyRating(entityId) {
     dispatch(getMyRatingStart(entityId));
 
     return reLikeUtils.getMyRating(entityId)
-    .then(result => dispatch(getMyRatingSuccess(result, entityId)))
-    .catch(error => {
-      console.error(error);
-      dispatch(getMyRatingError(error));
-    });
+      .then(result => dispatch(getMyRatingSuccess(result, entityId)))
+      .catch(error => {
+        logError('Error getting myRating')(error);
+        dispatch(getMyRatingError(error));
+      });
   };
 }
 
