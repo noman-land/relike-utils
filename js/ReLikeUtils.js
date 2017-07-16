@@ -4,7 +4,7 @@ import Web3 from 'web3';
 
 import relikeArtifacts from '../build/contracts/ReLike.json';
 
-import { logError } from './utils/loggingUtils';
+import { log, logError, logInfo, logWarning } from './utils/loggingUtils';
 
 export default class ReLikeUtils {
   constructor(config) {
@@ -24,7 +24,7 @@ export default class ReLikeUtils {
   }
 
   dislike(entityId) {
-    console.log('Disliking', entityId);
+    log('Disliking')(entityId);
     return this.ReLikeContract.deployed().then(instance => {
       return this.getActiveAccount().then(activeAccount => {
         return instance.dislike(entityId, { from: activeAccount, gas: 2000000 })
@@ -72,17 +72,17 @@ export default class ReLikeUtils {
 
   initWeb3(fallback) {
     if (typeof web3 !== 'undefined') {
-      console.warn('Using web3 detected from external source');
+      logWarning('Using web3 detected from external source')();
       this.web3 = new Web3(web3.currentProvider);
     } else if (typeof fallback === 'function') {
-      console.warn('Using web3 provided by the fallback function');
+      logWarning('Using web3 provided by the fallback function')();
       this.web3 = fallback();
     }
     window.web3 = this.web3;
   }
 
   like(entityId) {
-    console.info('Liking', entityId);
+    logInfo('Liking')(entityId);
     return this.ReLikeContract.deployed().then(instance => {
       return this.getActiveAccount().then(activeAccount => {
         return instance.like(entityId, { from: activeAccount, gas: 2000000 })
@@ -92,7 +92,7 @@ export default class ReLikeUtils {
   }
 
   unDislike(entityId) {
-    console.info('Undisliking', entityId);
+    logInfo('Undisliking')(entityId);
     return this.ReLikeContract.deployed().then(instance => {
       return this.getActiveAccount().then(activeAccount => {
         return instance.unDislike(entityId, { from: activeAccount, gas: 2000000 })
@@ -102,7 +102,7 @@ export default class ReLikeUtils {
   }
 
   unLike(entityId) {
-    console.info('Unliking', entityId);
+    logInfo('Unliking')(entityId);
     return this.ReLikeContract.deployed().then(instance => {
       return this.getActiveAccount().then(activeAccount => {
         return instance.unLike(entityId, { from: activeAccount, gas: 2000000 })
@@ -117,7 +117,7 @@ export default class ReLikeUtils {
       if (oldAccount === newAccount) {
         return false;
       }
-      console.info('Account switched to', newAccount);
+      logInfo('Account switched to')(newAccount);
       oldAccount = newAccount;
 
       if (typeof callback === 'function') {
