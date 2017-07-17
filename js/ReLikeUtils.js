@@ -88,7 +88,6 @@ export default class ReLikeUtils {
       logWarning('Using web3 provided by the fallback function')();
       this.web3 = fallback();
     }
-    window.web3 = this.web3;
   }
 
   like(entityId) {
