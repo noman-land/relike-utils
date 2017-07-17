@@ -2,23 +2,7 @@ import ReLikeUtils from '../../ReLikeUtils';
 
 import actionTypes from '../actions/ReLikeActionTypes';
 
-import {
-  dislike,
-  like,
-  getLikeCount,
-  getLikeData,
-  getMyRating,
-  unDislike,
-  unLike,
-} from '../actions/asyncActions/ReLikeAsyncActions';
-
-const ReLikeMiddleware = store => next => action => {
-  switch (action.type) {
-    case actionTypes.DISLIKE: {
-      const { payload: { entityId } } = action;
-      store.dispatch(dislike(entityId));
-      break;
-    }
+import { newLike, accountChanged } from '../actions/ReLikeActions';
 
 import reLikeAsyncActionCreator from '../actions/asyncActions/reLikeAsyncActionCreator';
 
