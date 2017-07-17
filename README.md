@@ -26,14 +26,14 @@ Javascript library for interfacing with ReLike, the decentralized public liking 
     
     It will also start listening for [`LikeEvent`](https://github.com/noman-land/relike-utils/blob/master/contracts/ReLike.sol#L28)s. Every time someone likes or dislikes something on ReLike an event is fired. A callback can be provided to receive these events. Please see below.
      
-    It will also start listening for any time the user switches accounts. A callback can be provided to receive the address of the new account. Please see below
+    It will also start listening for any time the user changes accounts. A callback can be provided to receive the address of the new account. Please see below
     
     The constructor can optionally be given a config object with one or more of the following 
     
     ```js
     const reLikeUtils = new ReLikeUtils({
-      // This function will be called every time ReLike notices the primary account switching
-      onAccountSwitch: function(newAccount) {},
+      // This function will be called every time ReLike notices the primary account changing
+      onAccountChange: function(newAccount) {},
       
       // This function will be called every time ReLike gets an event notification of a new like
       // In the future this function will receive the rating and the address that liked it as well
