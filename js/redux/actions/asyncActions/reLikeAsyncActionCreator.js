@@ -1,5 +1,3 @@
-import ReLikeUtils from '../../../ReLikeUtils';
-
 import { logError } from '../../../utils/loggingUtils';
 
 import { dislikeError, dislikeStart, dislikeSuccess } from '../dislikeActions';
@@ -9,10 +7,8 @@ import { getMyRatingError, getMyRatingStart, getMyRatingSuccess } from '../myRat
 import { unLikeError, unLikeStart, unLikeSuccess } from '../unLikeActions';
 import { unDislikeError, unDislikeStart, unDislikeSuccess } from '../unDislikeActions';
 
-const reLikeUtils = new ReLikeUtils();
-
-export function dislike(entityId) {
-  return dispatch => {
+export default function reLikeAsyncActionCreator(reLikeUtils) {
+  const dislike = entityId => dispatch => {
     dispatch(dislikeStart(entityId));
 
     return reLikeUtils.dislike(entityId)
@@ -22,10 +18,8 @@ export function dislike(entityId) {
         dispatch(dislikeError(error));
       });
   };
-}
 
-export function getLikeCount(entityId) {
-  return dispatch => {
+  const getLikeCount = entityId => dispatch => {
     dispatch(getLikeCountStart(entityId));
 
     return reLikeUtils.getLikeCount(entityId)
@@ -35,10 +29,8 @@ export function getLikeCount(entityId) {
         dispatch(getLikeCountError(error));
       });
   };
-}
 
-export function getMyRating(entityId) {
-  return dispatch => {
+  const getMyRating = entityId => dispatch => {
     dispatch(getMyRatingStart(entityId));
 
     return reLikeUtils.getMyRating(entityId)
@@ -48,17 +40,13 @@ export function getMyRating(entityId) {
         dispatch(getMyRatingError(error));
       });
   };
-}
 
-export function getLikeData(entityId) {
-  return dispatch => {
+  const getLikeData = entityId => dispatch => {
     dispatch(getLikeCount(entityId));
     dispatch(getMyRating(entityId));
   };
-}
 
-export function like(entityId) {
-  return dispatch => {
+  const like = entityId => dispatch => {
     dispatch(likeStart(entityId));
 
     return reLikeUtils.like(entityId)
@@ -68,10 +56,8 @@ export function like(entityId) {
         dispatch(likeError(error));
       });
   };
-}
 
-export function unDislike(entityId) {
-  return dispatch => {
+  const unDislike = entityId => dispatch => {
     dispatch(unDislikeStart(entityId));
 
     return reLikeUtils.unDislike(entityId)
@@ -81,10 +67,8 @@ export function unDislike(entityId) {
         dispatch(unDislikeError(error));
       });
   };
-}
 
-export function unLike(entityId) {
-  return dispatch => {
+  const unLike = entityId => dispatch => {
     dispatch(unLikeStart(entityId));
 
     return reLikeUtils.unLike(entityId)
@@ -93,5 +77,15 @@ export function unLike(entityId) {
         logError('Error unLiking')(error);
         dispatch(unLikeError(error));
       });
+  };
+
+  return {
+    dislike,
+    getLikeCount,
+    getMyRating,
+    getLikeData,
+    like,
+    unDislike,
+    unLike,
   };
 }

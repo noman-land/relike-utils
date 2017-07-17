@@ -1,3 +1,5 @@
+import ReLikeUtils from '../../ReLikeUtils';
+
 import actionTypes from '../actions/ReLikeActionTypes';
 
 import {
@@ -18,45 +20,75 @@ const ReLikeMiddleware = store => next => action => {
       break;
     }
 
-    case actionTypes.GET_LIKE_COUNT: {
-      const { payload: { entityId } } = action;
-      store.dispatch(getLikeCount(entityId));
-      break;
-    }
+import reLikeAsyncActionCreator from '../actions/asyncActions/reLikeAsyncActionCreator';
 
-    case actionTypes.GET_LIKE_DATA: {
-      const { payload: { entityId } } = action;
-      store.dispatch(getLikeData(entityId));
-      break;
-    }
+const ReLikeMiddleware = store => {
+  const { dispatch } = store;
 
-    case actionTypes.GET_MY_RATING: {
-      const { payload: { entityId } } = action;
-      store.dispatch(getMyRating(entityId));
-      break;
-    }
+  const reLikeUtils = new ReLikeUtils({
+    onAccountChange: newAccount => dispatch(accountChanged(newAccount)),
+    onLikeEvent: entityId => dispatch(newLike(entityId)),
+  });
 
-    case actionTypes.LIKE: {
-      const { payload: { entityId } } = action;
-      store.dispatch(like(entityId));
-      break;
-    }
+  const {
+    dislike,
+    like,
+    getLikeCount,
+    getLikeData,
+    getMyRating,
+    unDislike,
+    unLike,
+  } = reLikeAsyncActionCreator(reLikeUtils);
 
-    case actionTypes.UNDISLIKE: {
-      const { payload: { entityId } } = action;
-      store.dispatch(unDislike(entityId));
-      break;
-    }
+  return next => action => {
+    switch (action.type) {
+      case actionTypes.DISLIKE: {
+        const { payload: { entityId } } = action;
+        dispatch(dislike(entityId));
+        break;
+      }
 
-    case actionTypes.UNLIKE: {
-      const { payload: { entityId } } = action;
-      store.dispatch(unLike(entityId));
-      break;
-    }
+      case actionTypes.GET_LIKE_COUNT: {
+        const { payload: { entityId } } = action;
+        dispatch(getLikeCount(entityId));
+        break;
+      }
 
-    default:
-      return next(action);
-  }
+      case actionTypes.GET_LIKE_DATA:
+      case actionTypes.NEW_LIKE: {
+        const { payload: { entityId } } = action;
+        dispatch(getLikeData(entityId));
+        break;
+      }
+
+      case actionTypes.GET_MY_RATING: {
+        const { payload: { entityId } } = action;
+        dispatch(getMyRating(entityId));
+        break;
+      }
+
+      case actionTypes.LIKE: {
+        const { payload: { entityId } } = action;
+        dispatch(like(entityId));
+        break;
+      }
+
+      case actionTypes.UNDISLIKE: {
+        const { payload: { entityId } } = action;
+        dispatch(unDislike(entityId));
+        break;
+      }
+
+      case actionTypes.UNLIKE: {
+        const { payload: { entityId } } = action;
+        dispatch(unLike(entityId));
+        break;
+      }
+
+      default:
+        return next(action);
+    }
+  };
 };
 
 export default ReLikeMiddleware;
