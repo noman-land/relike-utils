@@ -6,6 +6,8 @@ import relikeArtifacts from '../build/contracts/ReLike.json';
 
 import { log, logError, logInfo, logWarning } from './utils/loggingUtils';
 
+import { DEFAULT_GAS } from './constants';
+
 export default class ReLikeUtils {
   constructor(config) {
     const {
@@ -24,11 +26,14 @@ export default class ReLikeUtils {
   }
 
   dislike(entityId) {
-    log('Disliking')(entityId);
+    log('Disliking:')(entityId);
     return this.ReLikeContract.deployed().then(instance => {
       return this.getActiveAccount().then(activeAccount => {
-        return instance.dislike(entityId, { from: activeAccount, gas: 2000000 })
-        .catch(logError('Failed to dislike'));
+        return instance.dislike(entityId, { from: activeAccount, gas: DEFAULT_GAS })
+        .catch(error => {
+          logError('Failed to dislike')(error);
+          throw error;
+        });
       });
     });
   }
@@ -55,7 +60,10 @@ export default class ReLikeUtils {
       instance.getEntity.call(entityId).then(([likes, dislikes]) => ({
         dislikes: dislikes.toNumber(),
         likes: likes.toNumber(),
-      })).catch(logError('Failed to get likeCount'))
+      })).catch(error => {
+        logError('Failed to get likeCount')(error);
+        throw error;
+      })
     ));
   }
 
@@ -65,7 +73,10 @@ export default class ReLikeUtils {
         return instance.getLikeById
         .call(entityId, { from: activeAccount })
         .then(([rating]) => rating.toNumber())
-        .catch(logError('Failed to get myRating'));
+        .catch(error => {
+          logError('Failed to get myRating')(error);
+          throw error;
+        });
       });
     });
   }
@@ -82,31 +93,40 @@ export default class ReLikeUtils {
   }
 
   like(entityId) {
-    logInfo('Liking')(entityId);
+    logInfo('Liking:')(entityId);
     return this.ReLikeContract.deployed().then(instance => {
       return this.getActiveAccount().then(activeAccount => {
-        return instance.like(entityId, { from: activeAccount, gas: 2000000 })
-        .catch(logError('Failed to like'));
+        return instance.like(entityId, { from: activeAccount, gas: DEFAULT_GAS })
+        .catch(error => {
+          logError('Failed to like')(error);
+          throw error;
+        });
       });
     });
   }
 
   unDislike(entityId) {
-    logInfo('Undisliking')(entityId);
+    logInfo('Undisliking:')(entityId);
     return this.ReLikeContract.deployed().then(instance => {
       return this.getActiveAccount().then(activeAccount => {
-        return instance.unDislike(entityId, { from: activeAccount, gas: 2000000 })
-        .catch(logError('Failed to undislike'));
+        return instance.unDislike(entityId, { from: activeAccount, gas: DEFAULT_GAS })
+        .catch(error => {
+          logError('Failed to undislike')(error);
+          throw error;
+        });
       });
     });
   }
 
   unLike(entityId) {
-    logInfo('Unliking')(entityId);
+    logInfo('Unliking:')(entityId);
     return this.ReLikeContract.deployed().then(instance => {
       return this.getActiveAccount().then(activeAccount => {
-        return instance.unLike(entityId, { from: activeAccount, gas: 2000000 })
-        .catch(logError('Failed to unlike'));
+        return instance.unLike(entityId, { from: activeAccount, gas: DEFAULT_GAS })
+        .catch(error => {
+          logError('Failed to unlike')(error);
+          throw error;
+        });
       });
     });
   }

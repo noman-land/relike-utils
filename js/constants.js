@@ -1,3 +1,5 @@
+export const DEFAULT_GAS = 2000000;
+
 export const RatingTypes = {
   DISLIKE: 'DISLIKE',
   LIKE: 'LIKE',
@@ -11,6 +13,7 @@ export const Ratings = [
 ];
 
 export default {
+  DEFAULT_GAS,
   Ratings,
   RatingTypes,
 };
