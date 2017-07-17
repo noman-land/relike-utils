@@ -5,6 +5,7 @@ import actionTypes from './ReLikeActionTypes';
 export const likeError = createAction(
   actionTypes.LIKE_ERROR,
   error => ({ error }),
+  (error, entityId) => ({ entityId }),
 );
 
 export const likeStart = createAction(
