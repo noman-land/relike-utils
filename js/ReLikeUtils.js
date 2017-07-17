@@ -47,7 +47,6 @@ export default class ReLikeUtils {
         deferred.reject(error);
         return false;
       }
-
       deferred.resolve(accounts[0]);
       return true;
     });
