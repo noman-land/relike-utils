@@ -1,19 +1,23 @@
 const APP_PREFIX = '[*** ReLikeUtils ***]';
 
+function isLoggingEnabled() {
+  return window.localStorage.getItem('RELIKE_ENABLE_LOGGING') === 'true';
+}
+
 export const log = message => (info = '') => {
-  console.info(APP_PREFIX, message, info); // eslint-disable-line
+  isLoggingEnabled() && console.log(APP_PREFIX, message, info); // eslint-disable-line
 };
 
 export const logError = message => (error = '') => {
-  console.error(APP_PREFIX, message, error); // eslint-disable-line
+  isLoggingEnabled() && console.error(APP_PREFIX, message, error); // eslint-disable-line
 };
 
 export const logInfo = message => (info = '') => {
-  console.info(APP_PREFIX, message, info); // eslint-disable-line
+  isLoggingEnabled() && console.info(APP_PREFIX, message, info); // eslint-disable-line
 };
 
 export const logWarning = message => (warning = '') => {
-  console.warn(APP_PREFIX, message, warning); // eslint-disable-line
+  isLoggingEnabled() && console.warn(APP_PREFIX, message, warning); // eslint-disable-line
 };
 
 export default {
