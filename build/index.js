@@ -2656,7 +2656,7 @@ exports.default = {
   LIKE_START: prefix('LIKE_START'),
   LIKE_SUCCESS: prefix('LIKE_SUCCESS'),
 
-  NEW_LIKE_EVENT: prefix('NEW_LIKE'),
+  NEW_LIKE_EVENT: prefix('NEW_LIKE_EVENT'),
 
   UNDISLIKE: prefix('UNDISLIKE'),
   UNDISLIKE_ERROR: prefix('UNDISLIKE_ERROR'),
