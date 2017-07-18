@@ -1,4 +1,4 @@
-# ReLikeUtils
+# relike-utils
 
 [![Join the chat at https://gitter.im/relike-utils/Lobby](https://badges.gitter.im/relike-utils/Lobby.svg)](https://gitter.im/relike-utils/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
