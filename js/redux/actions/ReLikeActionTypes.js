@@ -1,5 +1,5 @@
 function prefix(actionType) {
-  return `@@RELIKE_UTILS/${actionType}`;
+  return `@@RELIKE/${actionType}`;
 }
 
 export default {
