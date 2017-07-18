@@ -68,6 +68,8 @@ As of version 0.2.0, `relike-utils` comes with a pre-baked Redux middleware whic
 import { applyMiddleware, createStore } from 'redux';
 import { ReLikeMiddleware } from 'relike-utils';
 
+import rootReducer from '../reducers/index';
+
 const store = createStore(
   rootReducer,
   applyMiddleware(ReLikeMiddleware),
