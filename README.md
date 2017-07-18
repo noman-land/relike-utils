@@ -51,7 +51,7 @@ You can like or dislike any `entityId` you can think of. The sky is the limit. I
       onAccountChange: function(newAccount) {},
       
       // This function will be called every time ReLike gets an event notification of a new like
-      onLikeEvent: function({ dislikes, entityId, likes, myRating, user }) {},
+      onLikeEvent: function({ dislikes, entityId, likes, rating, user }) {},
       
       // This function will be fired when ReLike is initializing and should return a web3 object that ReLike will use instead of the one it finds
       // It receives the current web3 object if one was found
