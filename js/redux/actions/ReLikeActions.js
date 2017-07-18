@@ -2,8 +2,8 @@ import { createAction } from 'redux-actions';
 
 import actionTypes from './ReLikeActionTypes';
 
-export const accountChanged = createAction(
-  actionTypes.ACCOUNT_CHANGED,
+export const accountChangedEvent = createAction(
+  actionTypes.ACCOUNT_CHANGED_EVENT,
   newAccount => ({ newAccount }),
 );
 
@@ -32,8 +32,8 @@ export const like = createAction(
   entityId => ({ entityId }),
 );
 
-export const newLike = createAction(
-  actionTypes.NEW_LIKE,
+export const newLikeEvent = createAction(
+  actionTypes.NEW_LIKE_EVENT,
   ({ dislikes, entityId, likes, rating, user }) => ({ dislikes, entityId, likes, rating, user }),
 );
 
@@ -48,13 +48,13 @@ export const unLike = createAction(
 );
 
 export default {
-  accountChanged,
+  accountChangedEvent,
   dislike,
   getLikeCount,
   getLikeData,
   getMyRating,
   like,
-  newLike,
+  newLikeEvent,
   unDislike,
   unLike,
 };

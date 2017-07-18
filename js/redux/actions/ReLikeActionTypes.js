@@ -3,7 +3,7 @@ function prefix(actionType) {
 }
 
 export default {
-  ACCOUNT_CHANGED: prefix('ACCOUNT_CHANGED'),
+  ACCOUNT_CHANGED_EVENT: prefix('ACCOUNT_CHANGED_EVENT'),
 
   DISLIKE: prefix('DISLIKE'),
   DISLIKE_ERROR: prefix('DISLIKE_ERROR'),
@@ -30,7 +30,7 @@ export default {
   LIKE_START: prefix('LIKE_START'),
   LIKE_SUCCESS: prefix('LIKE_SUCCESS'),
 
-  NEW_LIKE: prefix('NEW_LIKE'),
+  NEW_LIKE_EVENT: prefix('NEW_LIKE'),
 
   UNDISLIKE: prefix('UNDISLIKE'),
   UNDISLIKE_ERROR: prefix('UNDISLIKE_ERROR'),
