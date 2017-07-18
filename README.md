@@ -1,6 +1,6 @@
 # relike-utils
 
-[![Join the chat at https://gitter.im/relike-utils/Lobby](https://badges.gitter.im/relike-utils/Lobby.svg)](https://gitter.im/relike-utils/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/relike-utils/Lobby](https://badges.gitter.im/relike-utils/Lobby.svg)](https://gitter.im/relike-utils/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![npm version](https://badge.fury.io/js/relike-utils.svg)](https://badge.fury.io/js/relike-utils)
 
 Javascript library for interfacing with ReLike, the decentralized public liking service, powered by Ethereum.
 
