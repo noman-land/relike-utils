@@ -112,6 +112,8 @@ export default function pendingLikes(state = Map(), action) {
   switch (action.type) {
     case ReLikeActionTypes.DISLIKE_START:
       return state.setIn([action.payload.entityId, 'dislike'], true);
+    default:
+      return state;
   }
 }
 ```
