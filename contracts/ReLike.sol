@@ -25,7 +25,13 @@ contract ReLike {
   mapping (string => Entity) entities;
   mapping (address => LikeList) likeLists;
 
-  event ItemLiked (address indexed user, string entityId, Rating rating);
+  event ItemLiked (
+    address indexed user,
+    string entityId,
+    uint likes,
+    uint dislikes,
+    Rating rating
+  );
 
   function hasLiked(string entityId) internal constant returns (bool) {
     return likeLists[msg.sender].likes[entityId].rating == Rating.LIKE;
@@ -45,7 +51,13 @@ contract ReLike {
     }
     likeLists[msg.sender].likes[entityId].rating = Rating.LIKE;
     entities[entityId].likes += 1;
-    ItemLiked(msg.sender, entityId, Rating.LIKE);
+    ItemLiked(
+      msg.sender,
+      entityId,
+      entities[entityId].likes,
+      entities[entityId].dislikes,
+      Rating.LIKE
+    );
   }
 
   function unLike(string entityId) {
@@ -58,7 +70,13 @@ contract ReLike {
     likeLists[msg.sender].entityIds.length -= 1;
     delete likeLists[msg.sender].likes[entityId];
     entities[entityId].likes -= 1;
-    ItemLiked(msg.sender, entityId, Rating.UNRATED);
+    ItemLiked(
+      msg.sender,
+      entityId,
+      entities[entityId].likes,
+      entities[entityId].dislikes,
+      Rating.UNRATED
+    );
   }
 
   function dislike(string entityId) {
@@ -71,7 +89,13 @@ contract ReLike {
     }
     likeLists[msg.sender].likes[entityId].rating = Rating.DISLIKE;
     entities[entityId].dislikes += 1;
-    ItemLiked(msg.sender, entityId, Rating.DISLIKE);
+    ItemLiked(
+      msg.sender,
+      entityId,
+      entities[entityId].likes,
+      entities[entityId].dislikes,
+      Rating.DISLIKE
+    );
   }
 
   function unDislike(string entityId) {
@@ -84,7 +108,13 @@ contract ReLike {
     likeLists[msg.sender].entityIds.length -= 1;
     delete likeLists[msg.sender].likes[entityId];
     entities[entityId].dislikes -= 1;
-    ItemLiked(msg.sender, entityId, Rating.UNRATED);
+    ItemLiked(
+      msg.sender,
+      entityId,
+      entities[entityId].likes,
+      entities[entityId].dislikes,
+      Rating.UNRATED
+    );
   }
 
   function getLikeById(string entityId)

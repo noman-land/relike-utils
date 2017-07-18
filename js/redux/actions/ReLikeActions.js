@@ -34,7 +34,7 @@ export const like = createAction(
 
 export const newLike = createAction(
   actionTypes.NEW_LIKE,
-  entityId => ({ entityId }),
+  ({ dislikes, entityId, likes, rating, user }) => ({ dislikes, entityId, likes, rating, user }),
 );
 
 export const unDislike = createAction(

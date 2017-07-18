@@ -11,7 +11,7 @@ const ReLikeMiddleware = store => {
 
   const reLikeUtils = new ReLikeUtils({
     onAccountChange: newAccount => dispatch(accountChanged(newAccount)),
-    onLikeEvent: entityId => dispatch(newLike(entityId)),
+    onLikeEvent: likeData => dispatch(newLike(likeData)),
   });
 
   const {
