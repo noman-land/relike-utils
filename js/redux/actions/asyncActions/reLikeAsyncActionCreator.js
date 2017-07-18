@@ -15,7 +15,7 @@ export default function reLikeAsyncActionCreator(reLikeUtils) {
       .then(result => dispatch(dislikeSuccess(result, entityId)))
       .catch(error => {
         logError('Error disliking')(error);
-        dispatch(dislikeError(error));
+        dispatch(dislikeError(error, entityId));
       });
   };
 
@@ -53,7 +53,7 @@ export default function reLikeAsyncActionCreator(reLikeUtils) {
       .then(result => dispatch(likeSuccess(result, entityId)))
       .catch(error => {
         logError('Error liking')(error);
-        dispatch(likeError(error));
+        dispatch(likeError(error, entityId));
       });
   };
 
@@ -64,7 +64,7 @@ export default function reLikeAsyncActionCreator(reLikeUtils) {
       .then(result => dispatch(unDislikeSuccess(result, entityId)))
       .catch(error => {
         logError('Error unDisliking')(error);
-        dispatch(unDislikeError(error));
+        dispatch(unDislikeError(error, entityId));
       });
   };
 
@@ -75,7 +75,7 @@ export default function reLikeAsyncActionCreator(reLikeUtils) {
       .then(result => dispatch(unLikeSuccess(result, entityId)))
       .catch(error => {
         logError('Error unLiking')(error);
-        dispatch(unLikeError(error));
+        dispatch(unLikeError(error, entityId));
       });
   };
 
