@@ -21,7 +21,7 @@ You can like or dislike any `entityId` you can think of. The sky is the limit. I
 
 1. Install the package
 
-    ```
+    ```bash
     npm i --save relike-utils
     ```
     
@@ -39,7 +39,7 @@ You can like or dislike any `entityId` you can think of. The sky is the limit. I
     
     Upon instantiation, `ReLikeUtils` will automatically connect to whatever `currentProvider` it sees. An override is possible inside the config object. Please see below. 
     
-    It will also start listening for [`LikeEvent`](https://github.com/noman-land/relike-utils/blob/master/contracts/ReLike.sol#L28)s. Every time someone likes or dislikes something on ReLike an event is fired. A callback can be provided to receive these events. Please see below.
+    It will also start listening for [`ItemLiked`](https://github.com/noman-land/relike-utils/blob/master/contracts/ReLike.sol#L28) events. Every time someone likes or dislikes something on ReLike an event is fired. A callback can be provided to receive these events. Please see below.
      
     It will also start listening for any time the user changes accounts. A callback can be provided to receive the address of the new account. Please see below
     
@@ -65,9 +65,10 @@ As of version 0.2.0, `relike-utils` comes with a pre-baked Redux middleware whic
 
 
 ```js
+import { applyMiddleware, createStore } from 'redux';
 import { ReLikeMiddleware } from 'relike-utils';
 
-this.store = createStore(
+const store = createStore(
   rootReducer,
   applyMiddleware(ReLikeMiddleware),
 );
@@ -102,6 +103,7 @@ For a full list of actions please see [`ReLikeActions.js`](https://github.com/no
 To handle the actions in your reducers, `relike-utils` exports a `ReLikeActionTypes` object:
 
 ```js
+import { Map } from 'immutable';
 import { ReLikeActionTypes } from 'relike-utils';
 
 export default function pendingLikes(state = Map(), action) {
