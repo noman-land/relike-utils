@@ -4,6 +4,19 @@
 
 Javascript library for interfacing with ReLike, the decentralized public liking service, powered by Ethereum.
 
+### Documentation
+
+Everything in ReLike centers around the concept of an `entityId`. This is just a string of text but it represents anything that can be liked. Some examples of `entityId`s include:
+
+    "cat"
+    "dog"
+    "Terminator 3"
+    "🍕"
+    "QmW84daiALvufneDcjDeoTFKR1bGQuHFUFv1fcSSRpmuCN"
+    "https://www.theguardian.com/sport/2017/jun/10/nba-finals-cleveland-cavaliers-golden-state-warriors-game-4"
+
+You can like or dislike any `entityId` you can think of. The sky is the limit. In its alpha stage it's very permissive so something is bound to break.
+
 ## How to use
 
 1. Install the package
@@ -38,8 +51,7 @@ Javascript library for interfacing with ReLike, the decentralized public liking 
       onAccountChange: function(newAccount) {},
       
       // This function will be called every time ReLike gets an event notification of a new like
-      // In the future this function will receive the rating and the address that liked it as well
-      onLikeEvent: function(entityId) {},
+      onLikeEvent: function({ dislikes, entityId, likes, myRating, user }) {},
       
       // This function will be fired when ReLike is initializing and should return a web3 object that ReLike will use instead of the one it finds
       // It receives the current web3 object if one was found
@@ -47,52 +59,96 @@ Javascript library for interfacing with ReLike, the decentralized public liking 
     });
     ```
 
-### Documentation
+### Using `relike-utils` as Redux middleware
 
-Everything in ReLike centers around the concept of an `entityId`. This is just a string of text but it represents anything that can be liked. Some examples of `entityId`s include:
+As of version 0.2.0, `relike-utils` comes with a pre-baked Redux middleware which can be instantiated as follows:
 
-    "cat"
-    "dog"
-    "Terminator 3"
-    "🍕"
-    "QmW84daiALvufneDcjDeoTFKR1bGQuHFUFv1fcSSRpmuCN"
-    "https://www.theguardian.com/sport/2017/jun/10/nba-finals-cleveland-cavaliers-golden-state-warriors-game-4"
-    
-You can like or dislike any `entityId` you can think of. The sky is the limit. In its alpha stage it's very permissive so something is bound to break.
+
+```js
+import { ReLikeMiddleware } from 'relike-utils';
+
+this.store = createStore(
+  rootReducer,
+  applyMiddleware(ReLikeMiddleware),
+);
+
+```
+
+The middleware will dispatch actions that are prefixed with `@@RELIKE/`.
+
+You can import ReLike actions from `relike-utils` to dispatch from your app. You can pass them to components via a connected container, in idiomatic Redux style:
+
+```js
+// MyContainer.js
+import { connect } from 'react-redux';
+import { ReLikeActions } from 'relike-utils';
+
+import MyComponent from '../components/MyComponent';
+
+const mapDispatchToProps = {
+  dislike: ReLikeActions.dislike,
+  getLikeData: ReLikeActions.getLikeData,
+  like: ReLikeActions.like,
+  unDislike: ReLikeActions.unDislike,
+  unLike: ReLikeActions.unLike,
+};
+
+export default connect(null, mapDispatchToProps)(MyComponent);
+
+```
+
+For a full list of actions please see [`ReLikeActions.js`](https://github.com/noman-land/relike-utils/blob/master/js/redux/actions/ReLikeActions.js).
+
+To handle the actions in your reducers, `relike-utils` exports a `ReLikeActionTypes` object:
+
+```js
+import { ReLikeActionTypes } from 'relike-utils';
+
+export default function pendingLikes(state = Map(), action) {
+  switch (action.type) {
+    case ReLikeActionTypes.DISLIKE_START:
+      return state.setIn([action.payload.entityId, 'dislike'], true);
+  }
+}
+```
+
+For a full list of action types please see [`ReLikeActionTypes.js`](https://github.com/noman-land/relike-utils/blob/master/js/redux/actions/ReLikeActionTypes.js).
 
 #### List of methods and what they do
 
-```
+Most methods return promises.
+
+```js
 reLikeUtils.like(entityId)
 ```
 
 Takes any string and likes it.
 
-```
+```js
 reLikeUtils.unlike(entityId)
 ```
 
 Takes any previously liked string and unlikes it. Will throw an error if the user hasn't liked this entity yet.
 
-```
+```js
 reLikeUtils.dislike(entityId)
 ```
 
 takes any string and dislikes it.
 
-```
+```js
 reLikeUtils.unDislike(entityId)
 ```
 
 Takes any previously disliked string and undislikes it. Will throw an error if the user hasn't disliked this entity yet.
 
-```
-reLikeUtils().getActiveAccount()
+```js
+reLikeUtils.getActiveAccount()
 ```
 
 Returns the user address currently active in web3.
 
-```
+```js
 reLikeUtils.getMyRating(entityId)
 ```
 
