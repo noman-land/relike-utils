@@ -55,15 +55,15 @@ export default class ReLikeUtils {
   }
 
   getLikeCount(entityId) {
-    return this.ReLikeContract.deployed().then(instance => (
-      instance.getEntity.call(entityId).then(([likes, dislikes]) => ({
+    return this.ReLikeContract.deployed().then(instance => {
+      return instance.getEntity.call(entityId).then(([likes, dislikes]) => ({
         dislikes: dislikes.toNumber(),
         likes: likes.toNumber(),
       })).catch(error => {
         logError('Failed to get likeCount')(error);
         throw error;
-      })
-    ));
+      });
+    });
   }
 
   getMyRating(entityId) {
