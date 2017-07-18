@@ -48,7 +48,7 @@ You can like or dislike any `entityId` you can think of. The sky is the limit. I
     ```js
     const reLikeUtils = new ReLikeUtils({
       // This function will be called every time ReLike notices the primary account changing
-      onAccountChange: function(newAccount) {},
+      onAccountChangeEvent: function(newAccount) {},
       
       // This function will be called every time ReLike gets an event notification of a new like
       onLikeEvent: function({ dislikes, entityId, likes, rating, user }) {},

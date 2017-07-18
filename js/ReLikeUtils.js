@@ -11,7 +11,7 @@ import { DEFAULT_GAS } from './constants';
 export default class ReLikeUtils {
   constructor(config) {
     const {
-      onAccountChange,
+      onAccountChangeEvent,
       onLikeEvent,
       web3Override,
     } = typeof config === 'object' ? config : {};
@@ -21,8 +21,8 @@ export default class ReLikeUtils {
     this.ReLikeContract = contract(relikeArtifacts);
     this.ReLikeContract.setProvider(this.web3.currentProvider);
 
-    this.updateOnAccountChange(onAccountChange);
-    this.updateOnLikeEvents(onLikeEvent);
+    this.updateOnAccountChangeEvent(onAccountChangeEvent);
+    this.updateOnLikeEvent(onLikeEvent);
   }
 
   dislike(entityId) {
@@ -129,7 +129,7 @@ export default class ReLikeUtils {
     });
   }
 
-  updateOnAccountChange(callback) {
+  updateOnAccountChangeEvent(callback) {
     let oldAccount = null;
     setInterval(() => this.getActiveAccount().then(newAccount => {
       if (oldAccount === newAccount) {
@@ -144,7 +144,7 @@ export default class ReLikeUtils {
     }), 500);
   }
 
-  updateOnLikeEvents(callback) {
+  updateOnLikeEvent(callback) {
     this.ReLikeContract.deployed().then(instance => instance.ItemLiked((error, result) => {
       const { args: { dislikes, entityId, likes, rating, user } } = result;
       const likeData = {

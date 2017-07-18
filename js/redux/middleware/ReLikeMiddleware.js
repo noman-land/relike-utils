@@ -2,7 +2,7 @@ import ReLikeUtils from '../../ReLikeUtils';
 
 import actionTypes from '../actions/ReLikeActionTypes';
 
-import { newLike, accountChanged } from '../actions/ReLikeActions';
+import { newLikeEvent, accountChangedEvent } from '../actions/ReLikeActions';
 
 import reLikeAsyncActionCreator from '../actions/asyncActions/reLikeAsyncActionCreator';
 
@@ -10,8 +10,8 @@ const ReLikeMiddleware = store => {
   const { dispatch } = store;
 
   const reLikeUtils = new ReLikeUtils({
-    onAccountChange: newAccount => dispatch(accountChanged(newAccount)),
-    onLikeEvent: likeData => dispatch(newLike(likeData)),
+    onAccountChangeEvent: newAccount => dispatch(accountChangedEvent(newAccount)),
+    onLikeEvent: likeData => dispatch(newLikeEvent(likeData)),
   });
 
   const {
