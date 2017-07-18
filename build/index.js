@@ -2629,7 +2629,7 @@ function prefix(actionType) {
 }
 
 exports.default = {
-  ACCOUNT_CHANGED: prefix('ACCOUNT_CHANGED'),
+  ACCOUNT_CHANGED_EVENT: prefix('ACCOUNT_CHANGED_EVENT'),
 
   DISLIKE: prefix('DISLIKE'),
   DISLIKE_ERROR: prefix('DISLIKE_ERROR'),
@@ -2656,7 +2656,7 @@ exports.default = {
   LIKE_START: prefix('LIKE_START'),
   LIKE_SUCCESS: prefix('LIKE_SUCCESS'),
 
-  NEW_LIKE: prefix('NEW_LIKE'),
+  NEW_LIKE_EVENT: prefix('NEW_LIKE'),
 
   UNDISLIKE: prefix('UNDISLIKE'),
   UNDISLIKE_ERROR: prefix('UNDISLIKE_ERROR'),
@@ -11123,7 +11123,7 @@ var ReLikeUtils = function () {
     _classCallCheck(this, ReLikeUtils);
 
     var _ref = (typeof config === 'undefined' ? 'undefined' : _typeof(config)) === 'object' ? config : {},
-        onAccountChange = _ref.onAccountChange,
+        onAccountChangeEvent = _ref.onAccountChangeEvent,
         onLikeEvent = _ref.onLikeEvent,
         web3Override = _ref.web3Override;
 
@@ -11132,8 +11132,8 @@ var ReLikeUtils = function () {
     this.ReLikeContract = (0, _truffleContract2.default)(_ReLike2.default);
     this.ReLikeContract.setProvider(this.web3.currentProvider);
 
-    this.updateOnAccountChange(onAccountChange);
-    this.updateOnLikeEvents(onLikeEvent);
+    this.updateOnAccountChangeEvent(onAccountChangeEvent);
+    this.updateOnLikeEvent(onLikeEvent);
   }
 
   _createClass(ReLikeUtils, [{
@@ -11263,8 +11263,8 @@ var ReLikeUtils = function () {
       });
     }
   }, {
-    key: 'updateOnAccountChange',
-    value: function updateOnAccountChange(callback) {
+    key: 'updateOnAccountChangeEvent',
+    value: function updateOnAccountChangeEvent(callback) {
       var _this6 = this;
 
       var oldAccount = null;
@@ -11283,8 +11283,8 @@ var ReLikeUtils = function () {
       }, 500);
     }
   }, {
-    key: 'updateOnLikeEvents',
-    value: function updateOnLikeEvents(callback) {
+    key: 'updateOnLikeEvent',
+    value: function updateOnLikeEvent(callback) {
       this.ReLikeContract.deployed().then(function (instance) {
         return instance.ItemLiked(function (error, result) {
           var _result$args = result.args,
@@ -11325,7 +11325,7 @@ exports.default = ReLikeUtils;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.unLike = exports.unDislike = exports.newLike = exports.like = exports.getMyRating = exports.getLikeData = exports.getLikeCount = exports.dislike = exports.accountChanged = undefined;
+exports.unLike = exports.unDislike = exports.newLikeEvent = exports.like = exports.getMyRating = exports.getLikeData = exports.getLikeCount = exports.dislike = exports.accountChangedEvent = undefined;
 
 var _reduxActions = __webpack_require__(9);
 
@@ -11335,7 +11335,7 @@ var _ReLikeActionTypes2 = _interopRequireDefault(_ReLikeActionTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var accountChanged = exports.accountChanged = (0, _reduxActions.createAction)(_ReLikeActionTypes2.default.ACCOUNT_CHANGED, function (newAccount) {
+var accountChangedEvent = exports.accountChangedEvent = (0, _reduxActions.createAction)(_ReLikeActionTypes2.default.ACCOUNT_CHANGED_EVENT, function (newAccount) {
   return { newAccount: newAccount };
 });
 
@@ -11359,7 +11359,7 @@ var like = exports.like = (0, _reduxActions.createAction)(_ReLikeActionTypes2.de
   return { entityId: entityId };
 });
 
-var newLike = exports.newLike = (0, _reduxActions.createAction)(_ReLikeActionTypes2.default.NEW_LIKE, function (_ref) {
+var newLikeEvent = exports.newLikeEvent = (0, _reduxActions.createAction)(_ReLikeActionTypes2.default.NEW_LIKE_EVENT, function (_ref) {
   var dislikes = _ref.dislikes,
       entityId = _ref.entityId,
       likes = _ref.likes,
@@ -11377,13 +11377,13 @@ var unLike = exports.unLike = (0, _reduxActions.createAction)(_ReLikeActionTypes
 });
 
 exports.default = {
-  accountChanged: accountChanged,
+  accountChangedEvent: accountChangedEvent,
   dislike: dislike,
   getLikeCount: getLikeCount,
   getLikeData: getLikeData,
   getMyRating: getMyRating,
   like: like,
-  newLike: newLike,
+  newLikeEvent: newLikeEvent,
   unDislike: unDislike,
   unLike: unLike
 };
@@ -17648,11 +17648,11 @@ var ReLikeMiddleware = function ReLikeMiddleware(store) {
 
 
   var reLikeUtils = new _ReLikeUtils2.default({
-    onAccountChange: function onAccountChange(newAccount) {
-      return dispatch((0, _ReLikeActions.accountChanged)(newAccount));
+    onAccountChangeEvent: function onAccountChangeEvent(newAccount) {
+      return dispatch((0, _ReLikeActions.accountChangedEvent)(newAccount));
     },
     onLikeEvent: function onLikeEvent(likeData) {
-      return dispatch((0, _ReLikeActions.newLike)(likeData));
+      return dispatch((0, _ReLikeActions.newLikeEvent)(likeData));
     }
   });
 
@@ -22720,11 +22720,11 @@ module.exports = {
 			},
 			"links": {},
 			"address": "0x7d8a0fbbf650bc9f39dfd079b706c33bb3ec02ab",
-			"updated_at": 1500336007035
+			"updated_at": 1500408889225
 		}
 	},
 	"schema_version": "0.0.5",
-	"updated_at": 1500336007035
+	"updated_at": 1500408889225
 };
 
 /***/ }),
