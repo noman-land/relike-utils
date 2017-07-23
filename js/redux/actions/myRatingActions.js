@@ -5,6 +5,7 @@ import actionTypes from './ReLikeActionTypes';
 export const getMyRatingError = createAction(
   actionTypes.GET_MY_RATING_ERROR,
   error => ({ error }),
+  (error, entityId) => ({ entityId }),
 );
 
 export const getMyRatingStart = createAction(

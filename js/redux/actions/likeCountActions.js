@@ -5,6 +5,7 @@ import actionTypes from './ReLikeActionTypes';
 export const getLikeCountError = createAction(
   actionTypes.GET_LIKE_COUNT_ERROR,
   error => ({ error }),
+  (error, entityId) => ({ error, entityId }),
 );
 
 export const getLikeCountStart = createAction(

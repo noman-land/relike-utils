@@ -14,7 +14,7 @@ export default function reLikeAsyncActionCreator(reLikeUtils) {
     return reLikeUtils.dislike(entityId)
       .then(result => dispatch(dislikeSuccess(result, entityId)))
       .catch(error => {
-        logError('Error disliking')(error);
+        logError('Error disliking')(error, entityId);
         dispatch(dislikeError(error, entityId));
       });
   };
@@ -25,8 +25,8 @@ export default function reLikeAsyncActionCreator(reLikeUtils) {
     return reLikeUtils.getLikeCount(entityId)
       .then(result => dispatch(getLikeCountSuccess(result, entityId)))
       .catch(error => {
-        logError('Error getting likeCount')(error);
-        dispatch(getLikeCountError(error));
+        logError('Error getting likeCount')(error, entityId);
+        dispatch(getLikeCountError(error, entityId));
       });
   };
 
@@ -36,8 +36,8 @@ export default function reLikeAsyncActionCreator(reLikeUtils) {
     return reLikeUtils.getMyRating(entityId)
       .then(result => dispatch(getMyRatingSuccess(result, entityId)))
       .catch(error => {
-        logError('Error getting myRating')(error);
-        dispatch(getMyRatingError(error));
+        logError('Error getting myRating')(error, entityId);
+        dispatch(getMyRatingError(error, entityId));
       });
   };
 
@@ -52,7 +52,7 @@ export default function reLikeAsyncActionCreator(reLikeUtils) {
     return reLikeUtils.like(entityId)
       .then(result => dispatch(likeSuccess(result, entityId)))
       .catch(error => {
-        logError('Error liking')(error);
+        logError('Error liking')(error, entityId);
         dispatch(likeError(error, entityId));
       });
   };
@@ -63,7 +63,7 @@ export default function reLikeAsyncActionCreator(reLikeUtils) {
     return reLikeUtils.unDislike(entityId)
       .then(result => dispatch(unDislikeSuccess(result, entityId)))
       .catch(error => {
-        logError('Error unDisliking')(error);
+        logError('Error unDisliking')(error, entityId);
         dispatch(unDislikeError(error, entityId));
       });
   };
@@ -74,7 +74,7 @@ export default function reLikeAsyncActionCreator(reLikeUtils) {
     return reLikeUtils.unLike(entityId)
       .then(result => dispatch(unLikeSuccess(result, entityId)))
       .catch(error => {
-        logError('Error unLiking')(error);
+        logError('Error unLiking')(error, entityId);
         dispatch(unLikeError(error, entityId));
       });
   };
