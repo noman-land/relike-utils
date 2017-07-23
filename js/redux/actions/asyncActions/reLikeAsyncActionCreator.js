@@ -8,14 +8,14 @@ import { unLikeError, unLikeStart, unLikeSuccess } from '../unLikeActions';
 import { unDislikeError, unDislikeStart, unDislikeSuccess } from '../unDislikeActions';
 
 export default function reLikeAsyncActionCreator(reLikeUtils) {
-  const dislike = entityId => dispatch => {
-    dispatch(dislikeStart(entityId));
+  const dislike = ({ entityId, timestamp }) => dispatch => {
+    dispatch(dislikeStart(entityId, timestamp));
 
     return reLikeUtils.dislike(entityId)
-      .then(result => dispatch(dislikeSuccess(result, entityId)))
+      .then(result => dispatch(dislikeSuccess(result, entityId, timestamp)))
       .catch(error => {
-        logError('Error disliking')(error, entityId);
-        dispatch(dislikeError(error, entityId));
+        logError('Error disliking')(error, entityId, timestamp);
+        dispatch(dislikeError(error, entityId, timestamp));
       });
   };
 
@@ -46,36 +46,36 @@ export default function reLikeAsyncActionCreator(reLikeUtils) {
     dispatch(getMyRating(entityId));
   };
 
-  const like = entityId => dispatch => {
-    dispatch(likeStart(entityId));
+  const like = ({ entityId, timestamp }) => dispatch => {
+    dispatch(likeStart(entityId, timestamp));
 
     return reLikeUtils.like(entityId)
-      .then(result => dispatch(likeSuccess(result, entityId)))
+      .then(result => dispatch(likeSuccess(result, entityId, timestamp)))
       .catch(error => {
-        logError('Error liking')(error, entityId);
-        dispatch(likeError(error, entityId));
+        logError('Error liking')(error, entityId, timestamp);
+        dispatch(likeError(error, entityId, timestamp));
       });
   };
 
-  const unDislike = entityId => dispatch => {
-    dispatch(unDislikeStart(entityId));
+  const unDislike = ({ entityId, timestamp }) => dispatch => {
+    dispatch(unDislikeStart(entityId, timestamp));
 
     return reLikeUtils.unDislike(entityId)
-      .then(result => dispatch(unDislikeSuccess(result, entityId)))
+      .then(result => dispatch(unDislikeSuccess(result, entityId, timestamp)))
       .catch(error => {
-        logError('Error unDisliking')(error, entityId);
-        dispatch(unDislikeError(error, entityId));
+        logError('Error unDisliking')(error, entityId, timestamp);
+        dispatch(unDislikeError(error, entityId, timestamp));
       });
   };
 
-  const unLike = entityId => dispatch => {
-    dispatch(unLikeStart(entityId));
+  const unLike = ({ entityId, timestamp }) => dispatch => {
+    dispatch(unLikeStart(entityId, timestamp));
 
     return reLikeUtils.unLike(entityId)
-      .then(result => dispatch(unLikeSuccess(result, entityId)))
+      .then(result => dispatch(unLikeSuccess(result, entityId, timestamp)))
       .catch(error => {
-        logError('Error unLiking')(error, entityId);
-        dispatch(unLikeError(error, entityId));
+        logError('Error unLiking')(error, entityId, timestamp);
+        dispatch(unLikeError(error, entityId, timestamp));
       });
   };
 

@@ -27,8 +27,10 @@ const ReLikeMiddleware = store => {
   return next => action => {
     switch (action.type) {
       case actionTypes.DISLIKE: {
-        const { payload: { entityId } } = action;
-        return dispatch(dislike(entityId));
+        const { entityId, timestamp } = action.payload;
+        return dispatch(
+          dislike({ entityId, timestamp }),
+        );
       }
 
       case actionTypes.GET_LIKE_COUNT: {
@@ -47,18 +49,24 @@ const ReLikeMiddleware = store => {
       }
 
       case actionTypes.LIKE: {
-        const { payload: { entityId } } = action;
-        return dispatch(like(entityId));
+        const { entityId, timestamp } = action.payload;
+        return dispatch(
+          like({ entityId, timestamp }),
+        );
       }
 
       case actionTypes.UNDISLIKE: {
-        const { payload: { entityId } } = action;
-        return dispatch(unDislike(entityId));
+        const { entityId, timestamp } = action.payload;
+        return dispatch(
+          unDislike({ entityId, timestamp }),
+        );
       }
 
       case actionTypes.UNLIKE: {
-        const { payload: { entityId } } = action;
-        return dispatch(unLike(entityId));
+        const { entityId, timestamp } = action.payload;
+        return dispatch(
+          unLike({ entityId, timestamp }),
+        );
       }
 
       default:

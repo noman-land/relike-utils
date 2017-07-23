@@ -5,16 +5,16 @@ import actionTypes from './ReLikeActionTypes';
 export const dislikeError = createAction(
   actionTypes.DISLIKE_ERROR,
   error => ({ error }),
-  (error, entityId) => ({ entityId }),
+  (error, entityId, timestamp) => ({ entityId, timestamp }),
 );
 
 export const dislikeStart = createAction(
   actionTypes.DISLIKE_START,
-  entityId => ({ entityId }),
+  (entityId, timestamp) => ({ entityId, timestamp }),
 );
 
 export const dislikeSuccess = createAction(
   actionTypes.DISLIKE_SUCCESS,
   result => ({ result }),
-  (result, entityId) => ({ entityId }),
+  (result, entityId, timestamp) => ({ entityId, timestamp }),
 );

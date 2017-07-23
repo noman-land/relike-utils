@@ -14,7 +14,7 @@ export const accountChangedEvent = createAction(
 
 export const dislike = createAction(
   actionTypes.DISLIKE,
-  entityId => ({ entityId }),
+  entityId => ({ entityId, timestamp: Date.now() }),
 );
 
 export const getLikeCount = createAction(
@@ -34,7 +34,7 @@ export const getMyRating = createAction(
 
 export const like = createAction(
   actionTypes.LIKE,
-  entityId => ({ entityId }),
+  entityId => ({ entityId, timestamp: Date.now() }),
 );
 
 export const newLikeEvent = createAction(
@@ -44,12 +44,12 @@ export const newLikeEvent = createAction(
 
 export const unDislike = createAction(
   actionTypes.UNDISLIKE,
-  entityId => ({ entityId }),
+  entityId => ({ entityId, timestamp: Date.now() }),
 );
 
 export const unLike = createAction(
   actionTypes.UNLIKE,
-  entityId => ({ entityId }),
+  entityId => ({ entityId, timestamp: Date.now() }),
 );
 
 export default {
