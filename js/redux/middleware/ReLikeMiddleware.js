@@ -34,18 +34,24 @@ const ReLikeMiddleware = store => {
       }
 
       case actionTypes.GET_LIKE_COUNT: {
-        const { payload: { entityId } } = action;
-        return dispatch(getLikeCount(entityId));
+        const { entityId } = action.payload;
+        return dispatch(
+          getLikeCount(entityId),
+        );
       }
 
       case actionTypes.GET_LIKE_DATA: {
-        const { payload: { entityId } } = action;
-        return dispatch(getLikeData(entityId));
+        const { entityId } = action.payload;
+        return dispatch(
+          getLikeData(entityId),
+        );
       }
 
       case actionTypes.GET_MY_RATING: {
-        const { payload: { entityId } } = action;
-        return dispatch(getMyRating(entityId));
+        const { entityId } = action.payload;
+        return dispatch(
+          getMyRating(entityId),
+        );
       }
 
       case actionTypes.LIKE: {
