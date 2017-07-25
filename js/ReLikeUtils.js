@@ -49,6 +49,13 @@ export default class ReLikeUtils {
         deferred.reject(error);
         return false;
       }
+
+      if (!accounts.length) {
+        logError('Not logged in');
+        deferred.reject(new Error('Not logged in'));
+        return false;
+      }
+
       deferred.resolve(accounts[0]);
       return true;
     });
