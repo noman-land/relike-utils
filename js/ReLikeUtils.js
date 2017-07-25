@@ -18,6 +18,8 @@ export default class ReLikeUtils {
 
     this.initWeb3(web3Override);
 
+    this.activeAccount = null;
+
     this.ReLikeContract = contract(relikeArtifacts);
     this.ReLikeContract.setProvider(this.web3.currentProvider);
 
@@ -130,13 +132,12 @@ export default class ReLikeUtils {
   }
 
   updateOnAccountChangeEvent(callback) {
-    let oldAccount = null;
     setInterval(() => this.getActiveAccount().then(newAccount => {
-      if (oldAccount === newAccount) {
+      if (this.activeAccount === newAccount) {
         return false;
       }
       logInfo('Account switched to')(newAccount);
-      oldAccount = newAccount;
+      this.activeAccount = newAccount;
 
       if (typeof callback === 'function') {
         callback(newAccount);
