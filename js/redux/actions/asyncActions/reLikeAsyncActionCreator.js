@@ -30,6 +30,11 @@ export default function reLikeAsyncActionCreator(reLikeUtils) {
       });
   };
 
+  const getLikeData = entityId => dispatch => {
+    dispatch(getLikeCount(entityId));
+    dispatch(getMyRating(entityId));
+  };
+
   const getMyRating = entityId => dispatch => {
     dispatch(getMyRatingStart(entityId));
 
@@ -39,11 +44,6 @@ export default function reLikeAsyncActionCreator(reLikeUtils) {
         logError('Error getting myRating')(error, entityId);
         dispatch(getMyRatingError(error, entityId));
       });
-  };
-
-  const getLikeData = entityId => dispatch => {
-    dispatch(getLikeCount(entityId));
-    dispatch(getMyRating(entityId));
   };
 
   const like = ({ entityId, timestamp }) => dispatch => {
@@ -82,8 +82,8 @@ export default function reLikeAsyncActionCreator(reLikeUtils) {
   return {
     dislike,
     getLikeCount,
-    getMyRating,
     getLikeData,
+    getMyRating,
     like,
     unDislike,
     unLike,
