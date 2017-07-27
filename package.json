@@ -1,6 +1,6 @@
 {
   "name": "relike-utils",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Javascript library for interacting with the ReLike universal liking service.",
   "main": "build/index.js",
   "scripts": {
@@ -35,10 +35,7 @@
   },
   "dependencies": {
     "babel-register": "^6.24.1",
-    "classnames": "^2.2.5",
-    "immutable": "^3.8.1",
     "q": "^1.5.0",
-    "redux-actions": "^2.2.1",
     "truffle-contract": "^2.0.0",
     "web3": "^0.18.4"
   },
