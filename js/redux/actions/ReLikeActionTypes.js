@@ -1,6 +1,4 @@
-function prefix(actionType) {
-  return `@@RELIKE/${actionType}`;
-}
+const prefix = actionType => `@@RELIKE/${actionType}`;
 
 export default {
   ACCOUNT_CHANGED_EVENT: prefix('ACCOUNT_CHANGED_EVENT'),
